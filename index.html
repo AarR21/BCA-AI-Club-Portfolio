@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Club Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>AI Club</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="projects/tic-tac-toe.html">Tic-Tac-Toe AI</a></li>
+                <li><a href="projects/connect-four.html">Connect 4 AI</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to the <span class="highlight-text">AI Club</span> Portfolio</h1>
+                <p>Exploring artificial intelligence through interactive projects and algorithms</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn primary-btn">View Projects</a>
+                    <a href="#about" class="btn secondary-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="geometric-shape"></div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Featured <span class="highlight-text">Projects</span></h2>
+            <div class="project-cards">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="tic-tac-toe-preview">
+                            <div class="tic-tac-toe-grid">
+                                <div class="cell x"></div>
+                                <div class="cell"></div>
+                                <div class="cell o"></div>
+                                <div class="cell"></div>
+                                <div class="cell x"></div>
+                                <div class="cell"></div>
+                                <div class="cell o"></div>
+                                <div class="cell"></div>
+                                <div class="cell x"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Tic-Tac-Toe AI</h3>
+                        <p>An unbeatable AI opponent using the Minimax algorithm to make optimal moves in the classic game of Tic-Tac-Toe.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Minimax</span>
+                            <span class="tag">Game AI</span>
+                        </div>
+                        <a href="projects/tic-tac-toe.html" class="btn primary-btn">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="connect-four-preview">
+                            <div class="connect-four-grid">
+                                <div class="column">
+                                    <div class="slot empty"></div>
+                                    <div class="slot empty"></div>
+                                    <div class="slot empty"></div>
+                                    <div class="slot player1"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="slot empty"></div>
+                                    <div class="slot empty"></div>
+                                    <div class="slot player1"></div>
+                                    <div class="slot player2"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="slot empty"></div>
+                                    <div class="slot player1"></div>
+                                    <div class="slot player2"></div>
+                                    <div class="slot player1"></div>
+                                </div>
+                                <div class="column">
+                                    <div class="slot player1"></div>
+                                    <div class="slot player2"></div>
+                                    <div class="slot player1"></div>
+                                    <div class="slot player2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Connect 4 AI</h3>
+                        <p>A sophisticated AI that uses Alpha-Beta pruning to efficiently search the game tree and make strategic moves in Connect 4.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Alpha-Beta</span>
+                            <span class="tag">Game AI</span>
+                        </div>
+                        <a href="projects/connect-four.html" class="btn primary-btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2>About the <span class="highlight-text">AI Club</span></h2>
+                <p>The AI Club is dedicated to exploring and implementing artificial intelligence algorithms through practical projects. Our members develop skills in machine learning, game theory, and algorithm design while creating interactive applications.</p>
+                <p>We focus on hands-on learning and collaborative development, encouraging members to experiment with different AI approaches and share their findings with the community.</p>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon algorithm-icon"></div>
+                        <h3>Algorithm Design</h3>
+                        <p>Implementing classic and modern AI algorithms</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon ml-icon"></div>
+                        <h3>Machine Learning</h3>
+                        <p>Exploring neural networks and deep learning</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon game-icon"></div>
+                        <h3>Game AI</h3>
+                        <p>Creating intelligent opponents for various games</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AI Club</h3>
+                <p>Exploring artificial intelligence through interactive projects</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects/tic-tac-toe.html">Tic-Tac-Toe AI</a></li>
+                    <li><a href="projects/connect-four.html">Connect 4 AI</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@aiclub.example.com</p>
+                <p>GitHub: github.com/aiclub</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AI Club. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
