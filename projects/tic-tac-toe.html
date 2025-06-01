@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe AI - AI Club Portfolio</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>AI Club</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="tic-tac-toe.html" class="active">Tic-Tac-Toe AI</a></li>
+                <li><a href="connect-four.html">Connect 4 AI</a></li>
+                <li><a href="../index.html#about">About</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-header">
+            <h1>Tic-Tac-Toe <span class="highlight-text">AI</span></h1>
+            <p>An unbeatable AI opponent using the Minimax algorithm to make optimal moves in the classic game of Tic-Tac-Toe.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Interactive Demo</h2>
+            <p>Try playing against our Tic-Tac-Toe AI! The AI uses the Minimax algorithm to evaluate all possible moves and choose the optimal one. Can you manage a draw against this unbeatable opponent?</p>
+            
+            <div class="demo-container">
+                <div class="demo-placeholder">
+                    <!-- Replace this with your actual demo or embed -->
+                    <p>Interactive Tic-Tac-Toe Demo Goes Here</p>
+                    <p>You can embed your game here or link to an external demo</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Algorithm Explanation</h2>
+            <p>The Tic-Tac-Toe AI uses the <strong>Minimax algorithm</strong>, a decision-making algorithm commonly used in two-player games. Here's how it works:</p>
+            
+            <ol>
+                <li>The algorithm recursively evaluates all possible moves from the current game state.</li>
+                <li>For each move, it simulates the opponent's best possible response.</li>
+                <li>This process continues until reaching terminal states (win, loss, or draw).</li>
+                <li>Terminal states are assigned values: +10 for a win, -10 for a loss, and 0 for a draw.</li>
+                <li>The AI chooses the move that maximizes its score, assuming the opponent plays optimally.</li>
+            </ol>
+            
+            <p>This approach guarantees that the AI will never lose and will win whenever possible, making it effectively unbeatable in Tic-Tac-Toe.</p>
+            
+            <div class="metrics-container">
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Win or Draw Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">O(b<sup>d</sup>)</div>
+                    <div class="metric-label">Time Complexity</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">9!</div>
+                    <div class="metric-label">Maximum Game States</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Code Implementation</h2>
+            <p>Below is the Python implementation of the Tic-Tac-Toe AI using the Minimax algorithm:</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <h3>tic_tac_toe_ai.py</h3>
+                    <div class="code-actions">
+                        <button title="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                    </div>
+                </div>
+                <pre><code class="language-python">class TicTacToe:
+    def __init__(self):
+        # Initialize empty 3x3 board
+        self.board = [' ' for _ in range(9)]
+        self.current_winner = None
+        
+    def print_board(self):
+        # Print the current state of the board
+        for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
+            print('| ' + ' | '.join(row) + ' |')
+            
+    def available_moves(self):
+        # Return list of available moves (indexes of empty spaces)
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
+        
+    def empty_squares(self):
+        # Check if there are any empty squares left
+        return ' ' in self.board
+        
+    def num_empty_squares(self):
+        # Return the number of empty squares
+        return self.board.count(' ')
+        
+    def make_move(self, square, letter):
+        # Make a move on the board
+        if self.board[square] == ' ':
+            self.board[square] = letter
+            # Check if this move results in a win
+            if self.winner(square, letter):
+                self.current_winner = letter
+            return True
+        return False
+        
+    def winner(self, square, letter):
+        # Check if the last move resulted in a win
+        
+        # Check row
+        row_ind = square // 3
+        row = self.board[row_ind*3:(row_ind+1)*3]
+        if all([spot == letter for spot in row]):
+            return True
+            
+        # Check column
+        col_ind = square % 3
+        column = [self.board[col_ind+i*3] for i in range(3)]
+        if all([spot == letter for spot in column]):
+            return True
+            
+        # Check diagonals
+        # Only need to check if the move is on a diagonal
+        if square % 2 == 0:
+            # Top-left to bottom-right diagonal
+            diagonal1 = [self.board[i] for i in [0, 4, 8]]
+            if all([spot == letter for spot in diagonal1]):
+                return True
+            # Top-right to bottom-left diagonal
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]
+            if all([spot == letter for spot in diagonal2]):
+                return True
+                
+        # If all checks fail, return False
+        return False
+
+
+def minimax(board, depth, is_maximizing, alpha=float('-inf'), beta=float('inf')):
+    # Base cases
+    if board.current_winner == 'X':
+        return 1 * (board.num_empty_squares() + 1)
+    elif board.current_winner == 'O':
+        return -1 * (board.num_empty_squares() + 1)
+    elif not board.empty_squares():
+        return 0
+        
+    if is_maximizing:
+        # Maximizing player (X)
+        best_score = float('-inf')
+        for move in board.available_moves():
+            # Make the move
+            board.make_move(move, 'X')
+            # Recursively call minimax
+            score = minimax(board, depth + 1, False, alpha, beta)
+            # Undo the move
+            board.board[move] = ' '
+            board.current_winner = None
+            # Update best score
+            best_score = max(score, best_score)
+            # Alpha-beta pruning
+            alpha = max(alpha, best_score)
+            if beta <= alpha:
+                break
+        return best_score
+    else:
+        # Minimizing player (O)
+        best_score = float('inf')
+        for move in board.available_moves():
+            # Make the move
+            board.make_move(move, 'O')
+            # Recursively call minimax
+            score = minimax(board, depth + 1, True, alpha, beta)
+            # Undo the move
+            board.board[move] = ' '
+            board.current_winner = None
+            # Update best score
+            best_score = min(score, best_score)
+            # Alpha-beta pruning
+            beta = min(beta, best_score)
+            if beta <= alpha:
+                break
+        return best_score
+
+
+def find_best_move(board):
+    # Find the best move for the AI (X player)
+    best_score = float('-inf')
+    best_move = None
+    
+    for move in board.available_moves():
+        # Make the move
+        board.make_move(move, 'X')
+        # Calculate score using minimax
+        score = minimax(board, 0, False)
+        # Undo the move
+        board.board[move] = ' '
+        board.current_winner = None
+        # Update best move if needed
+        if score > best_score:
+            best_score = score
+            best_move = move
+            
+    return best_move
+
+
+def play_game():
+    # Main game loop
+    game = TicTacToe()
+    
+    while game.empty_squares():
+        # Display the board
+        game.print_board()
+        
+        # Human player's move (O)
+        human_move = None
+        while human_move not in game.available_moves():
+            try:
+                human_move = int(input("Enter your move (0-8): "))
+                if human_move not in game.available_moves():
+                    print("Invalid move. Try again.")
+            except ValueError:
+                print("Please enter a number.")
+                
+        game.make_move(human_move, 'O')
+        
+        # Check if human won
+        if game.current_winner:
+            game.print_board()
+            print("You win!")
+            return
+            
+        # Check if board is full
+        if not game.empty_squares():
+            game.print_board()
+            print("It's a tie!")
+            return
+            
+        # AI's move (X)
+        ai_move = find_best_move(game)
+        game.make_move(ai_move, 'X')
+        print(f"AI placed X at position {ai_move}")
+        
+        # Check if AI won
+        if game.current_winner:
+            game.print_board()
+            print("AI wins!")
+            return
+            
+    # If we get here, it's a tie
+    game.print_board()
+    print("It's a tie!")
+
+
+if __name__ == "__main__":
+    play_game()
+</code></pre>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>How to Run</h2>
+            <p>To run this Tic-Tac-Toe AI on your local machine:</p>
+            
+            <ol>
+                <li>Copy the code above into a file named <code>tic_tac_toe_ai.py</code></li>
+                <li>Open a terminal or command prompt</li>
+                <li>Navigate to the directory containing the file</li>
+                <li>Run the command: <code>python tic_tac_toe_ai.py</code></li>
+                <li>Follow the on-screen instructions to play against the AI</li>
+            </ol>
+            
+            <p>The game uses a simple console interface where you input numbers 0-8 to represent positions on the board:</p>
+            
+            <pre><code>
+0 | 1 | 2
+---------
+3 | 4 | 5
+---------
+6 | 7 | 8
+            </code></pre>
+            
+            <a href="../index.html" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to Home
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AI Club</h3>
+                <p>Exploring artificial intelligence through interactive projects</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="tic-tac-toe.html">Tic-Tac-Toe AI</a></li>
+                    <li><a href="connect-four.html">Connect 4 AI</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@aiclub.example.com</p>
+                <p>GitHub: github.com/aiclub</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AI Club. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
